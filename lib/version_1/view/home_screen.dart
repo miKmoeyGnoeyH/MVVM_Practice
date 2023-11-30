@@ -27,34 +27,19 @@ class HomeScreen extends ConsumerWidget {
         ),
         centerTitle: true,
       ),
-      body: Container(
-        color: Colors.white,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-          child: PagedGridView<int, WebtoonModel>(
-            builderDelegate: PagedChildBuilderDelegate<WebtoonModel>(
-              itemBuilder: (context, item, index) {
-                return webtoonGridItem(webtoonModel: item);
-              },
-            ),
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              childAspectRatio: 1 / 1.5,
-            ),
-            pagingController: pagingController,
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+        child: PagedGridView<int, WebtoonModel>(
+          builderDelegate: PagedChildBuilderDelegate<WebtoonModel>(
+            itemBuilder: (context, item, index) {
+              return webtoonGridItem(webtoonModel: item);
+            },
           ),
-          // GridView.builder(
-          //   scrollDirection: Axis.vertical,
-          //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          //     crossAxisCount: 3,
-          //     childAspectRatio: 1 / 1.5,
-          //   ),
-          //   itemCount: webtoonModels.length,
-          //   itemBuilder: (BuildContext context, int index) {
-          //     var webtoonModel = webtoonModels[index];
-          //     return webtoonGridItem(webtoonModel: webtoonModel);
-          //   },
-          // ),
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            childAspectRatio: 1 / 1.5,
+          ),
+          pagingController: pagingController,
         ),
       ),
     );

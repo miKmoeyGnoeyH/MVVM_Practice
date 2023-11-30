@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mvvm_practice/version_1/model/webtoon_model.dart';
-import 'package:mvvm_practice/view/widgets/webtoon_grid_item_image.dart';
-import 'package:mvvm_practice/view/widgets/webtoon_grid_item_text.dart';
+import 'package:mvvm_practice/version_1/view/widgets/webtoon_grid_item_image.dart';
+import 'package:mvvm_practice/version_1/view/widgets/webtoon_grid_item_text.dart';
 
 Widget webtoonGridItem({required WebtoonModel webtoonModel}) {
   return Padding(
