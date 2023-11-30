@@ -4,10 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:mvvm_practice/model/webtoon_model.dart';
+import 'package:mvvm_practice/version_1/model/webtoon_model.dart';
 import 'package:http/http.dart' as http;
-
-import '../commands/command.dart';
 
 final webtoonModelChangeNotifierProvider =
     ChangeNotifierProvider((ref) => WebtoonModelChangeNotifierProvider());
@@ -24,7 +22,7 @@ class WebtoonModelChangeNotifierProvider extends ChangeNotifier {
         DateFormat('EEE').format(DateTime.now()).toLowerCase();
 
     final queryParameters = {
-      'perPage': '12',
+      'perPage': '24',
       'service': service,
       'updateDay': updateDay
     };
