@@ -8,8 +8,8 @@ import '../models/webtoon_grid_model.dart';
 
 
 
-final pagingControllerChangeNotifierProvider =
-ChangeNotifierProvider((ref) => WebtoonGridViewModel(ref));
+final webtoonGridChangeNotifierProvider =
+ChangeNotifierProvider((ref) => WebtoonGridViewModel());
 
 
 
@@ -22,28 +22,20 @@ class WebtoonGridViewModel extends ChangeNotifier {
 
   WebtoonGridViewModel.appendPage(List<WebtoonGridModel> newItems, int nextPageKey) {
     pagingController.appendPage(newItems, nextPageKey);
-    notifyListeners();
   }
 
   WebtoonGridViewModel.appendLastPage(List<WebtoonGridModel> newItems) {
     pagingController.appendLastPage(newItems);
-    notifyListeners();
   }
 
   WebtoonGridViewModel.onError(Object e) {
     pagingController.error = e;
-    notifyListeners();
   }
 
-  WebtoonGridViewModel(ChangeNotifierProviderRef<Object?> ref) {
+  WebtoonGridViewModel() {
     pagingController.addPageRequestListener((_) {
       api.getTodaysNaverWebtoons(pagingController.nextPageKey);
+      notifyListeners();
     });
-  }
-
-  @override
-  void dispose() {
-    pagingController.dispose();
-    super.dispose();
   }
 }

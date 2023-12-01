@@ -1,8 +1,16 @@
 class WebtoonModel {
-  final String title, url, img;
+  final String title, img, author;
+  final int id;
 
   WebtoonModel.fromJson(Map<String, dynamic> json)
       : title = json['title'],
-        url = json['url'],
-        img = json['img'];
+        img = json['img'],
+        author = json['author'],
+        id = json['webtoonId'] % 1000000000000;
+
+  WebtoonModel.fromModel(WebtoonModel model)
+      : title = model.title,
+        img = model.img,
+        author = model.author,
+        id = model.id;
 }

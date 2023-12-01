@@ -1,3 +1,5 @@
+import 'dart:async';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -8,7 +10,12 @@ import 'home_screen.dart';
 
 void main() {
   HttpOverrides.global = MyHttpOverrides();
-  runApp(const ProviderScope(child: MyApp()));
+
+  runZonedGuarded(() {
+    runApp(const ProviderScope(child: MyApp()));
+  }, (error, stackTrace) {
+    log('error', error:error, stackTrace:stackTrace);
+  });
 }
 
 class MyApp extends StatelessWidget {

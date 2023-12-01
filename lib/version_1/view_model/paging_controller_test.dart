@@ -14,16 +14,6 @@ class PagingControllerTest extends ChangeNotifier {
   PagingController<int, WebtoonModel> pagingController =
       PagingController(firstPageKey: 0);
 
-  final String _scheme = 'https';
-  final String _host = 'korea-webtoon-api.herokuapp.com';
-  final String _service = 'naver';
-  final String _perPage = '24';
-  final String _updateDay =
-      DateFormat('EEE').format(DateTime.now()).toLowerCase();
-
-  late var _queryParameters;
-  late var _requestUri;
-
   PagingControllerTest() {
     pagingController.addPageRequestListener((pageKey) {
       _load(pageKey);
@@ -31,22 +21,12 @@ class PagingControllerTest extends ChangeNotifier {
   }
 
   _load(int pageKey) async {
-    _queryParameters = {
-      'page': '${pagingController.nextPageKey}',
-      'perPage': _perPage,
-      'service': _service,
-      'updateDay': _updateDay,
-    };
-
-    _requestUri = Uri(
-      scheme: _scheme,
-      host: _host,
-      queryParameters: _queryParameters,
-    );
-    print('requestUri : $_requestUri');
+    final String url =
+        'https://korea-webtoon-api.herokuapp.com/?page=$pageKey&perPage=24&service=naver&updateDay=${DateFormat('EEE').format(DateTime.now()).toLowerCase()}';
+    print('requestUri : $url');
 
     try {
-      final response = await http.get(_requestUri);
+      final response = await http.get(Uri.parse(url));
       print('response.statusCode : ${response.statusCode}');
 
       if (response.statusCode == 200) {
@@ -58,7 +38,7 @@ class PagingControllerTest extends ChangeNotifier {
           newItems.add(WebtoonModel.fromJson(webtoon));
         }
 
-        final isLastPage = newItems.length < int.parse(_perPage);
+        final isLastPage = newItems.length < int.parse('24');
         if (isLastPage) {
           pagingController.appendLastPage(newItems);
         } else {

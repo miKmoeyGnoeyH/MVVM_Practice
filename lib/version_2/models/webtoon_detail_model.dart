@@ -1,4 +1,4 @@
-import 'package:mvvm_practice/version_1/model/webtoon_model.dart';
+import 'package:mvvm_practice/version_2/models/webtoon_model.dart';
 
 class WebtoonDetailModel extends WebtoonModel {
   WebtoonDetailModel.fromJson(Map<String, dynamic> json)

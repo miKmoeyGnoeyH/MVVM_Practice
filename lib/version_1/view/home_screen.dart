@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:mvvm_practice/version_1/view/widgets/webtoon_grid_item.dart';
-import 'package:mvvm_practice/version_1/view_model/webtoon_view_model.dart';
+import 'package:mvvm_practice/version_1/view_model/webtoon_episodes_view_model.dart';
 
 import '../model/webtoon_model.dart';
 import '../view_model/paging_controller_test.dart';
@@ -29,15 +29,15 @@ class HomeScreen extends ConsumerWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-        child: PagedGridView<int, WebtoonModel>(
-          builderDelegate: PagedChildBuilderDelegate<WebtoonModel>(
+        child: PagedGridView(
+          builderDelegate: PagedChildBuilderDelegate(
             itemBuilder: (context, item, index) {
-              return webtoonGridItem(webtoonModel: item);
+              return webtoonGridItem(context, ref, item: item);
             },
           ),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
-            childAspectRatio: 1 / 1.5,
+            childAspectRatio: 1 / 1.8,
           ),
           pagingController: pagingController,
         ),

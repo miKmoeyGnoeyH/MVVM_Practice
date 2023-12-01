@@ -1,22 +1,22 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart';
 import 'package:intl/intl.dart';
-import 'package:mvvm_practice/version_1/view_model/paging_controller_test.dart';
 import 'package:mvvm_practice/version_2/models/webtoon_grid_model.dart';
 import 'package:mvvm_practice/version_2/view_models/webtoon_grid_view_model.dart';
 
 class ApiServices {
-  Future<void> getTodaysNaverWebtoons(int? page) async {
+  void getTodaysNaverWebtoons(int? page) async {
     const String scheme = 'https';
     const String host = 'korea-webtoon-api.herokuapp.com';
     const String perPage = '24';
     const String service = 'naver';
 
     final String url =
-        'https://korea-webtoon-api.herokuapp.com/?page=$page&perPage=24&service=naver&updateDay=${DateFormat('EEE').format(DateTime.now()).toLowerCase}';
+        'https://korea-webtoon-api.herokuapp.com/?page=$page&perPage=24&service=naver&updateDay=${DateFormat('EEE').format(DateTime.now()).toLowerCase()}';
+    print(url);
+
 
     try {
       final Response response = await get(Uri.parse(url));
