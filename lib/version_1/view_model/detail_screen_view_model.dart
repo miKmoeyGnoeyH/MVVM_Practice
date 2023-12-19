@@ -21,10 +21,12 @@ class DetailViewModel extends ChangeNotifier {
   load(WebtoonModel item) async {
     webtoonDetailModel = null;
 
-    final String url =
-        'https://webtoon-crawler.nomadcoders.workers.dev/${item.id}';
+    const String url =
+        //'https://webtoon-crawler.nomadcoders.workers.dev/${item.id}';
+        'http://192.168.1.42:8080/postlist';
     try {
       final response = await http.get(Uri.parse(url)).timeout(const Duration(seconds: 5));
+      print(response);
 
       if (response.statusCode == 200) {
         final webtoonDetails = jsonDecode(response.body);
